@@ -30,20 +30,7 @@ setInterval(() => {
   slides[idx].classList.remove('active');
   idx = (idx + 1) % slides.length;
   slides[idx].classList.add('active');
-}, 2000); // troca a cada 5s
+}, 1000); // troca a cada 5s
 
-// Quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('.site-header');
-
-  // Ao rolar a página
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-});
 
 

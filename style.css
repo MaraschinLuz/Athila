@@ -54,16 +54,13 @@ a:hover::after {
 
 /* 3. Header */
 .site-header {
-  position: fixed;
+  position: static;
   top: 0; left: 0; right: 0;
+  height: 80px;
   background: transparent;
   backdrop-filter: none;
   z-index: 1000;               /* sempre acima do hero */
   transition: background 0.3s, backdrop-filter 0.3s;
-}
-.site-header.scrolled {
-  background: rgba(16, 22, 29, 0.85);
-  backdrop-filter: blur(10px);
 }
 .header-container {
   max-width: 1200px;
@@ -95,6 +92,8 @@ a:hover::after {
   flex-direction: column; gap:4px;
   background:none; border:none;
   cursor:pointer; padding:4px;
+  position: relative;
+  z-index: 1000; /* acima do .nav-open (que está em 1001) */
 }
 .nav-toggle span {
   width:24px; height:2px;
@@ -106,15 +105,25 @@ a:hover::after {
   .nav-toggle { display:flex; }
 }
 .nav-open {
-  display:flex !important;
-  flex-direction:column;
-  position:absolute; top:100%; left:0;
-  width:100%; background: rgba(16,22,29,.95);
-  padding:20px 0;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-dark);       /* cor sólida, sem transparência */
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  z-index: 1001;                     /* abaixo apenas do toggle */
+  backdrop-filter: none;            /* garante sem blur/transparência */
 }
 .nav-open .nav-list {
-  flex-direction:column; gap:16px;
-  align-items:center;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;                    /* remove margens */
+  padding: 0;
 }
 .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity:0; }
@@ -242,7 +251,7 @@ section { padding:60px 20px; }
   width:100%;
 }
 #tech-form h2 {
-  font-family:'Orbitron',sans-serif;
+  font-family:'Exo 2',sans-serif;
   color:var(--accent-1);
   text-align:center;
   margin-bottom:1.5rem;
@@ -394,3 +403,123 @@ section { padding:60px 20px; }
   text-align:center;
   padding-top:15px;
 }
+
+/* ===== Floating Buttons ===== */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.floating-btn {
+  width: 56px;
+  height: 56px;
+  background: var(--accent-1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.floating-btn img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+/* se quiser, pode dar um pequeno deslocamento no botão de suporte */
+.support-btn {
+  /* ex.: colocar acima do outro */
+  margin-bottom: 5px;
+}
+
+/* ===== Overrides para o botão WhatsApp ===== */
+.floating-btn.whatsapp-btn {
+  background: #25D366;       /* verde oficial WhatsApp */
+}
+
+.floating-btn.whatsapp-btn img {
+  filter: none;              /* preserva as cores originais do logo */
+  width: 28px;
+  height: 28px;
+}
+
+/* ==== Fixed contact footer ==== */
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--surface);
+  color: var(--text-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+}
+
+:root {
+  /* altura exata do seu fixed-footer */
+  --footer-height: 70px;    /* ajuste este valor ao da sua .fixed-footer */
+  --floating-gap: 16px;     /* espaço extra entre footer e botões */
+}
+
+/* seletor dos seus botões flutuantes */
+.support-btn,
+.whatsapp-btn {
+  position: fixed;
+  right: 20px;
+  /* z-index deve ser maior que o do footer, mas não tão alto a ponto de cobrir modais, etc */
+  z-index: 1500;
+}
+
+/* empurra o botão mais baixo (ex: WhatsApp) para acima do footer */
+.whatsapp-btn {
+  bottom: calc(var(--footer-height) + var(--floating-gap));
+}
+
+/* empurra o segundo botão (ex: Suporte) acima do primeiro */
+.support-btn {
+  /* caso os botões tenham altura de ~48px, você pode usar:
+     bottom: calc(var(--footer-height) + var(--floating-gap) * 2 + 48px);
+     ou ajustar manualmente o offset:
+  */
+  bottom: calc(var(--footer-height) + var(--floating-gap)*2 + 56px);
+}
+
+.fixed-footer span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.call-btn {
+  background: #25D366;          /* verde oficial WhatsApp */
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.3s;
+}
+
+.call-btn:hover {
+  background: #1ebe5d;
+}
+

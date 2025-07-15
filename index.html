@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <header class="site-header">
@@ -27,7 +31,9 @@
           </ul>
         </nav>
         <button class="nav-toggle" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </header>
@@ -330,6 +336,30 @@
         </p>
       </div>
     </footer>
+
+    <div class="floating-buttons">
+      <a
+        href="https://api.whatsapp.com/send?phone=5511999999999&text=Olá!%20Preciso%20de%20suporte"
+        class="floating-btn support-btn"
+        target="_blank"
+        aria-label="Suporte pelo WhatsApp"
+      >
+        <img src="imagens/btnSuporte.png" alt="Suporte" />
+      </a>
+      <a
+        href="https://api.whatsapp.com/send?phone=5511999999999"
+        class="floating-btn whatsapp-btn"
+        target="_blank"
+        aria-label="WhatsApp"
+      >
+        <img src="imagens/btnWhatsapp.png" alt="WhatsApp" />
+      </a>
+    </div>
+
+    <div class="fixed-footer">
+      <span>Entre em contato</span>
+      <a href="tel:+5511999999999" class="call-btn">Ligar</a>
+    </div>
 
     <script src="script.js"></script>
   </body>
