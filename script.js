@@ -23,17 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Ao carregar, verifica tema salvo
-const switchInput = document.querySelector('#theme-switch');
-const root         = document.documentElement;
-const savedTheme   = localStorage.getItem('theme') || 'dark';
+// —— carrossel automático —— 
+const slides = document.querySelectorAll('.carousel .slide');
+let idx = 0;
+setInterval(() => {
+  slides[idx].classList.remove('active');
+  idx = (idx + 1) % slides.length;
+  slides[idx].classList.add('active');
+}, 2000); // troca a cada 5s
 
-root.setAttribute('data-theme', savedTheme);
-switchInput.checked = savedTheme === 'light';
+// Quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.site-header');
 
-// Quando alterado, muda tema e persiste
-switchInput.addEventListener('change', () => {
-  const next = switchInput.checked ? 'light' : 'dark';
-  root.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
+  // Ao rolar a página
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
 });
+
+
