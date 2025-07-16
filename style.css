@@ -3,6 +3,19 @@
 /* 0. Importação de fontes */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@500;700&display=swap');
 
+
+/* ===== Global overflow fix ===== */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.carousel,
+.swiper-container,
+section {
+  box-sizing: border-box;
+  width: 100%;
+}
 /* 1. Paleta de cores e Box-Sizing */
 :root {
   --bg-dark:   #0D1117;
@@ -522,4 +535,5 @@ section { padding:60px 20px; }
 .call-btn:hover {
   background: #1ebe5d;
 }
+
 

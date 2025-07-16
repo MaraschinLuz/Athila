@@ -30,7 +30,35 @@ setInterval(() => {
   slides[idx].classList.remove('active');
   idx = (idx + 1) % slides.length;
   slides[idx].classList.add('active');
-}, 1000); // troca a cada 5s
+}, 5000); // troca a cada 5s
 
+      document.addEventListener('DOMContentLoaded', function () {
+        const common = {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: false
+          },
+          loop: true,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+          }
+        };
 
+        new Swiper('.hero-swiper', {
+          ...common,
+          coverflowEffect: { depth: 200, modifier: 1.5, slideShadows: false }
+        });
+        new Swiper('.planos-swiper', common);
+        new Swiper('.diferenciais-swiper', common);
+        new Swiper('.depoimentos-swiper', common);
+        new Swiper('.garantias-swiper', common);
+      });
 
