@@ -293,6 +293,8 @@ a:hover::after {
 }
 
 /* 5. Seções secundárias */
+
+
 section {
   padding: 60px 20px;
 }
@@ -305,38 +307,6 @@ section {
   background: var(--surface);
 }
 
-.diferenciais-grid,
-.planos-grid,
-.depoimentos-grid,
-.garantias-grid {
-  display: grid;
-  gap: 30px;
-}
-
-.diferenciais-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  max-width: 1100px;
-  margin: auto;
-}
-
-.planos-grid {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  max-width: 1100px;
-  margin: auto;
-}
-
-.depoimentos-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  max-width: 1000px;
-  margin: auto;
-}
-
-.garantias-grid {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  max-width: 1100px;
-  margin: auto;
-}
-
 /* Cards */
 .card,
 .plano-card,
@@ -347,7 +317,7 @@ section {
   border-radius: 12px;
   padding: 2rem;
   transition: transform .3s, box-shadow .3s;
-  height: 270px;
+  height: 100vh;
 }
 
 
