@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Dispara evento no GA4
         gtag("event", "click", {
-          event_category: "button",
+          event_category: "button, .floating-btn, .call-btn, .text_button",
           event_label: label,
         });
         // Opcional: log no console
