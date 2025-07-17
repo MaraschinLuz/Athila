@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     idx = (idx + 1) % slides.length;
     slides[idx].classList.add("active");
   }, 5000); // troca a cada 5s
-
+});
   document.addEventListener("DOMContentLoaded", function () {
     const common = {
       effect: "coverflow",
@@ -92,4 +92,4 @@ document.addEventListener("DOMContentLoaded", () => {
       event_label: "WhatsApp",
     });
   });
-});
+
