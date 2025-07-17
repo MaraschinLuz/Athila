@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document
-    .querySelectorAll("button, .floating-btn, .call-btn")
+    .querySelectorAll("button, .floating-btn, .call-btn, .text_button")
     .forEach((btn) => {
       btn.addEventListener("click", () => {
         // Gera um label legível: id, aria-label ou texto
