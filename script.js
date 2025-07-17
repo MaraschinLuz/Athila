@@ -61,4 +61,3 @@ setInterval(() => {
         new Swiper('.depoimentos-swiper', common);
         new Swiper('.garantias-swiper', common);
       });
-
