@@ -80,4 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`GA4 ⇢ click on "${label}"`);
       });
     });
+  document.getElementById("support-btn").addEventListener("click", () => {
+    gtag("event", "click_suporte", {
+      event_category: "botao",
+      event_label: "Suporte pelo WhatsApp",
+    });
+  });
+  document.getElementById("whatsapp-btn").addEventListener("click", () => {
+    gtag("event", "click_whatsapp", {
+      event_category: "botao",
+      event_label: "WhatsApp",
+    });
+  });
 });
