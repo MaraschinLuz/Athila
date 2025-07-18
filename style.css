@@ -331,7 +331,7 @@ section {
   margin: auto;
 }
 
-.diferenciais,
+.diferenciais-carousel,
 .depoimentos,
 .contato,
 .planos,
@@ -697,52 +697,31 @@ section {
   background: #1ebe5d;
 }
 
-/* 1) tamanho menor dos cards */
-.diferenciais-carousel .card {
-  flex: 0 0 200px;       /* largura fixa */
-  padding: 1rem;         /* menos espaçamento interno */
-  font-size: 0.9rem;     /* textos um pouco menores */
+.diferenciais-carousel .marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
 }
 
-/* 2) transforma o grid em flex animado */
-.diferenciais-carousel {
-  overflow: hidden;
-  position: relative;
-}
-.diferenciais-carousel .diferenciais-grid {
+.diferenciais-carousel .marquee {
   display: flex;
   gap: 1rem;
-  /* animação de scroll horizontal infinito */
-  animation: scroll-left 5s linear infinite;
+  /* sem animação CSS */
 }
 
-/* 3) keyframes para mover o flexbox */
-@keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%); /* metade do container, já que duplicamos os itens */
-  }
+.diferenciais-carousel .marquee .card {
+  flex: 0 0 200px;  /* ajuste ao tamanho desejado */
+  box-sizing: border-box;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
-
-/* 4) garante que cada card “escondido” comece a aparecer suavemente */
-.diferenciais-carousel .card {
-  transition: transform 0.3s;
-}
-.diferenciais-carousel:hover .card {
-  transform: none; /* pausa qualquer hover indesejado */
-}
-
-/* 5) Responsivo: no desktop mostra estático em grid, no mobile ativa autoplay */
 @media (min-width: 768px) {
-  .diferenciais-carousel .diferenciais-grid {
+  /* volta ao grid estático em desktop */
+  .diferenciais-carousel .marquee-wrapper {
+    overflow: visible;
+  }
+  .diferenciais-carousel .marquee {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
     gap: 2rem;
-    animation: none;    /* desliga o scroll automático */
-  }
-  .diferenciais-carousel .card {
-    flex: none;         /* volta a ser grid item normal */
   }
 }

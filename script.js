@@ -30,66 +30,101 @@ document.addEventListener("DOMContentLoaded", () => {
     slides[idx].classList.add("active");
   }, 5000); // troca a cada 5s
 });
-  document.addEventListener("DOMContentLoaded", function () {
-    const common = {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2,
-        slideShadows: false,
-      },
-      loop: true,
-      autoplay: {
-        delay: 1500,
-        disableOnInteraction: false,
-      },
-    };
+document.addEventListener("DOMContentLoaded", function () {
+  const common = {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    },
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+  };
 
-    new Swiper(".hero-swiper", {
-      ...common,
-      coverflowEffect: { depth: 200, modifier: 1.5, slideShadows: false },
-    });
-    new Swiper(".planos-swiper", common);
-    new Swiper(".diferenciais-swiper", common);
-    new Swiper(".depoimentos-swiper", common);
-    new Swiper(".garantias-swiper", common);
+  new Swiper(".hero-swiper", {
+    ...common,
+    coverflowEffect: { depth: 200, modifier: 1.5, slideShadows: false },
   });
+  new Swiper(".planos-swiper", common);
+  new Swiper(".diferenciais-swiper", common);
+  new Swiper(".depoimentos-swiper", common);
+  new Swiper(".garantias-swiper", common);
 
-  document
-    .querySelectorAll("button, .floating-btn, .call-btn, .text_button")
-    .forEach((btn) => {
-      btn.addEventListener("click", () => {
-        // Gera um label legível: id, aria-label ou texto
-        const label =
-          btn.id ||
-          btn.getAttribute("aria-label") ||
-          btn.textContent.trim() ||
-          "unknown_button";
+  window.addEventListener("load", () => {
+    const wrapper = document.querySelector(
+      ".diferenciais-carousel .marquee-wrapper"
+    );
+    const marquee = wrapper.querySelector(".marquee");
 
-        // Dispara evento no GA4
-        gtag("event", "click", {
-          event_category: "button, .floating-btn, .call-btn, .text_button",
-          event_label: label,
-        });
-        // Opcional: log no console
-        console.log(`GA4 ⇢ click on "${label}"`);
+    // 1) Clona os cards internos para ter repetição
+    marquee.innerHTML += marquee.innerHTML;
+
+    const resetPoint = marquee.scrollWidth / 2;
+    let pos = 0;
+    const speed = 0.4; // px por frame, ajuste aqui
+
+    function step() {
+      pos += speed;
+      if (pos >= resetPoint) {
+        pos -= resetPoint;
+      }
+      wrapper.scrollLeft = pos;
+      requestAnimationFrame(step);
+    }
+
+    // Só ativa no mobile:
+    function initIfMobile() {
+      if (window.innerWidth < 768) {
+        requestAnimationFrame(step);
+      } else {
+        // se voltar ao desktop, zera scroll e cancela qualquer scrollLeft extra
+        wrapper.scrollLeft = 0;
+      }
+    }
+
+    initIfMobile();
+    window.addEventListener("resize", initIfMobile);
+  });
+});
+
+document
+  .querySelectorAll("button, .floating-btn, .call-btn, .text_button")
+  .forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Gera um label legível: id, aria-label ou texto
+      const label =
+        btn.id ||
+        btn.getAttribute("aria-label") ||
+        btn.textContent.trim() ||
+        "unknown_button";
+
+      // Dispara evento no GA4
+      gtag("event", "click", {
+        event_category: "button, .floating-btn, .call-btn, .text_button",
+        event_label: label,
       });
-    });
-  document.getElementById("support-btn").addEventListener("click", () => {
-    gtag("event", "click_suporte", {
-      event_category: "botao",
-      event_label: "Suporte pelo WhatsApp",
+      // Opcional: log no console
+      console.log(`GA4 ⇢ click on "${label}"`);
     });
   });
-  document.getElementById("whatsapp-btn").addEventListener("click", () => {
-    gtag("event", "click_whatsapp", {
-      event_category: "botao",
-      event_label: "WhatsApp",
-    });
+document.getElementById("support-btn").addEventListener("click", () => {
+  gtag("event", "click_suporte", {
+    event_category: "botao",
+    event_label: "Suporte pelo WhatsApp",
   });
-
+});
+document.getElementById("whatsapp-btn").addEventListener("click", () => {
+  gtag("event", "click_whatsapp", {
+    event_category: "botao",
+    event_label: "WhatsApp",
+  });
+});
