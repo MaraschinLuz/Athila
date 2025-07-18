@@ -331,7 +331,7 @@ section {
   margin: auto;
 }
 
-.diferenciais-carousel,
+.diferenciais,
 .depoimentos,
 .contato,
 .planos,
@@ -697,31 +697,34 @@ section {
   background: #1ebe5d;
 }
 
-.diferenciais-carousel .marquee-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
-
-.diferenciais-carousel .marquee {
-  display: flex;
-  gap: 1rem;
-  /* sem animação CSS */
-}
-
-.diferenciais-carousel .marquee .card {
-  flex: 0 0 200px;  /* ajuste ao tamanho desejado */
-  box-sizing: border-box;
-  padding: 1rem;
-  font-size: 0.9rem;
-}
-@media (min-width: 768px) {
-  /* volta ao grid estático em desktop */
-  .diferenciais-carousel .marquee-wrapper {
-    overflow: visible;
-  }
-  .diferenciais-carousel .marquee {
+/* mobile: sempre 3 cards por linha */
+@media (max-width: 768px) {
+  .diferenciais-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 2rem;
+    gap: 10px;
+    /* força exatamente 3 colunas iguais */
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
   }
+
+  .diferenciais-grid .card {
+    height: auto !important;
+    width: 100%;
+    padding: 8px;
+    /* reduz o padding interno */
+    font-size: 15px;
+    flex-direction: column;
+    align-items: center;
+    /* centraliza horizontalmente */
+    text-align: center;
+    /* ajusta fonte para caber */
+  }
+
+  .diferenciais-grid .card img {
+    width: 40px;
+    /* reduz ícones/imagens */
+    height: 40px;
+    margin-bottom: 0.75rem;
+  }
+
 }

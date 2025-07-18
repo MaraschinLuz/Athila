@@ -59,41 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
   new Swiper(".depoimentos-swiper", common);
   new Swiper(".garantias-swiper", common);
 
-  window.addEventListener("load", () => {
-    const wrapper = document.querySelector(
-      ".diferenciais-carousel .marquee-wrapper"
-    );
-    const marquee = wrapper.querySelector(".marquee");
-
-    // 1) Clona os cards internos para ter repetição
-    marquee.innerHTML += marquee.innerHTML;
-
-    const resetPoint = marquee.scrollWidth / 2;
-    let pos = 0;
-    const speed = 0.4; // px por frame, ajuste aqui
-
-    function step() {
-      pos += speed;
-      if (pos >= resetPoint) {
-        pos -= resetPoint;
-      }
-      wrapper.scrollLeft = pos;
-      requestAnimationFrame(step);
-    }
-
-    // Só ativa no mobile:
-    function initIfMobile() {
-      if (window.innerWidth < 768) {
-        requestAnimationFrame(step);
-      } else {
-        // se voltar ao desktop, zera scroll e cancela qualquer scrollLeft extra
-        wrapper.scrollLeft = 0;
-      }
-    }
-
-    initIfMobile();
-    window.addEventListener("resize", initIfMobile);
-  });
 });
 
 document
@@ -128,3 +93,5 @@ document.getElementById("whatsapp-btn").addEventListener("click", () => {
     event_label: "WhatsApp",
   });
 });
+
+
