@@ -1,34 +1,47 @@
 // script.js
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btnToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".nav");
-  const navLinks = document.querySelectorAll(".nav-list a");
-
-  // Abre/fecha menu mobile
-  btnToggle.addEventListener("click", () => {
-    nav.classList.toggle("nav-open");
-    btnToggle.classList.toggle("open");
+document.addEventListener('DOMContentLoaded', () => {
+  // Menu mobile toggle
+  const btnToggle = document.querySelector('.nav-toggle');
+  const nav       = document.querySelector('.nav');
+  const links     = document.querySelectorAll('.nav-list a');
+  btnToggle.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+    btnToggle.classList.toggle('open');
   });
-
-  // Fecha o menu ao clicar em qualquer link
-  navLinks.forEach((link) =>
-    link.addEventListener("click", () => {
-      if (nav.classList.contains("nav-open")) {
-        nav.classList.remove("nav-open");
-        btnToggle.classList.remove("open");
+  links.forEach(a =>
+    a.addEventListener('click', () => {
+      if (nav.classList.contains('nav-open')) {
+        nav.classList.remove('nav-open');
+        btnToggle.classList.remove('open');
       }
     })
   );
 
-  // —— carrossel automático ——
-  const slides = document.querySelectorAll(".carousel .slide");
-  let idx = 0;
+  // Hero carousel com textos dinâmicos
+  const slides     = document.querySelectorAll('.carousel .slide');
+  const labelElem  = document.querySelector('.hero-label');
+  const titleElem  = document.querySelector('.hero-title');
+  const descElem   = document.querySelector('.hero-desc');
+  let   idx        = 0;
+
+  function updateHero() {
+    const s = slides[idx];
+    labelElem.textContent = s.dataset.label;
+    titleElem.textContent = s.dataset.title;
+    descElem.textContent  = s.dataset.desc;
+  }
+
+  // inicializa
+  updateHero();
+  slides[idx].classList.add('active');
+
   setInterval(() => {
-    slides[idx].classList.remove("active");
+    slides[idx].classList.remove('active');
     idx = (idx + 1) % slides.length;
-    slides[idx].classList.add("active");
-  }, 5000); // troca a cada 5s
+    slides[idx].classList.add('active');
+    updateHero();
+  }, 5000);
 });
 document.addEventListener("DOMContentLoaded", function () {
   const common = {

@@ -23,8 +23,8 @@ section {
   --bg-dark: #0D1117;
   --surface: #161B22;
   --text-light: #C9D1D9;
-  --accent-1: #0FF;
-  --accent-2: #F0F;
+  --accent-1: #17BEBB;
+  --accent-2: #BB17A5;
 }
 
 *,
@@ -271,6 +271,15 @@ a:hover::after {
   position: relative;
   z-index: 2;
 }
+.hero-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  letter-spacing: .1em;
+  color: var(--accent-2);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
 
 @media (max-width:768px) {
   .hero {
@@ -283,7 +292,7 @@ a:hover::after {
 }
 
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
@@ -423,14 +432,14 @@ section {
 
 .input-group input:focus,
 .input-group textarea:focus {
-  border-color: var(--accent-1);
-  box-shadow: 0 0 8px var(--accent-1);
+  border-color: var(--accent-3);
+  box-shadow: 0 0 8px var(--accent-3);
   outline: none;
 }
 
 /* 7. Botões Uiverse */
 .button {
-  --black-700: var(--accent-1);
+  --black-700: var(--accent-2);
   --border_radius: 9999px;
   --transtion: .3s ease-in-out;
   position: relative;
