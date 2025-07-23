@@ -274,13 +274,38 @@ a:hover::after {
 .hero-label {
   display: block;
   font-family: 'Inter', sans-serif;
-  font-size: .9rem;
+  font-size: .8rem;
   letter-spacing: .1em;
   color: var(--accent-2);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
+/* —— Hero Timer estilo DD:HH:MM:SS —— */
+.hero-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem 0 0.8rem;
+}
 
+.hero-timer .time-segment {
+  text-align: center;
+}
+
+.hero-timer .time-segment .value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent-1);
+}
+
+.hero-timer .time-segment .label {
+  display: block;
+  font-size: 0.5rem;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+}
 @media (max-width:768px) {
   .hero {
     height: 70vh;
@@ -292,13 +317,13 @@ a:hover::after {
 }
 
 .hero-content h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 /* 5. Seções secundárias */
@@ -432,8 +457,8 @@ section {
 
 .input-group input:focus,
 .input-group textarea:focus {
-  border-color: var(--accent-3);
-  box-shadow: 0 0 8px var(--accent-3);
+  border-color: var(--accent-1);
+  box-shadow: 0 0 8px var(--accent-1);
   outline: none;
 }
 
